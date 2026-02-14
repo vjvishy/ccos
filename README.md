@@ -3,7 +3,7 @@
 A composable skill suite for AI-native engineering teams. Each layer is independent but designed to work together.
 
 ```
-Layer 4: Orchestration    → Multi-instance workflows (coming soon)
+Layer 4: Orchestration    → Multi-instance workflows, parallel development
 Layer 3: Memory           → Second Brain — context persistence across sessions
 Layer 2: Rules            → Rules Engine — CLAUDE.md lifecycle management
 Layer 1: Execution        → GSD — structured plan → execute → verify
@@ -56,9 +56,20 @@ No more re-explaining. Every session starts smart.
 
 [Full documentation →](skills/second-brain.md)
 
-### Layer 4: Orchestration (Coming Soon)
+### Layer 4: Orchestration
 
-Multi-instance workflows, session management, git worktrees, parallel development.
+Multi-instance workflows, git worktrees, and parallel development.
+
+```
+/orch:spawn      → Create a worktree + branch for parallel work
+/orch:monitor    → Show status of all active sessions
+/orch:merge      → Bring worktree work back into main
+/orch:cleanup    → Remove a finished worktree and branch
+```
+
+Run multiple Claude Code sessions like a Starcraft player. Includes session patterns (Juggler, Reviewer, Splitter) and an adoption path from single-session to multi-session workflows.
+
+[Full documentation →](skills/orchestration.md)
 
 ## Quick Start
 
@@ -108,6 +119,12 @@ cp skills/second-brain.md /path/to/project/.claude/skills/
 # Weekly
 /brain:prune                   → Keep memory lean
 /rules:optimize                → Sharpen rules based on learnings
+
+# Parallel work (when needed)
+/orch:spawn                    → Start a parallel session
+/orch:monitor                  → Check on all sessions
+/orch:merge                    → Bring work back to main
+/orch:cleanup                  → Remove finished worktrees
 ```
 
 ## How the Layers Compose
@@ -145,14 +162,15 @@ ccos/
 ├── install.sh                 # Install all skills globally
 └── skills/
     ├── rules-engine.md        # Layer 2 — CLAUDE.md management
-    └── second-brain.md        # Layer 3 — context persistence
+    ├── second-brain.md        # Layer 3 — context persistence
+    └── orchestration.md       # Layer 4 — parallel development
 ```
 
 ## Contributing
 
 Early-stage project. Key areas for contribution:
 
-- **Layer 4 design** — multi-instance orchestration patterns
+- **Layer 4 patterns** — additional session management workflows
 - **Framework-specific rule templates** — Next.js, Swift, Rust, Python
 - **Integration patterns** — Notion, Linear, Jira via MCP
 - **Session summary templates** — different project types
